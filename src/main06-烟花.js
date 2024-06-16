@@ -15,7 +15,7 @@ const scene = new THREE.Scene()
 //2. 创建相机 1角度;    2.视口宽高比;   3,近端0.1;   4.远端1000
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 // 位置
-camera.position.set(40, 15, 0);
+camera.position.set(0, 30, 50);
 // 将相机添加到场景当中
 scene.add(camera);
 
@@ -77,6 +77,16 @@ loader.load(
   function (gltf) {
     // 加载成功后的回调函数
     const model = gltf.scene;
+    model.children[0].children[0].children[0].material.onBeforeCompile = (shader, renderer) => {
+      // console.log(shader.fragmentShader)
+      console.log(shader.vertexShader)
+      shader.vertexShader = shader.vertexShader.replace(
+        `#include <begin_vertex>
+        `,
+        `//需要修改的内容
+        `)
+
+    }
     scene.add(model);
   },
   function (xhr) {

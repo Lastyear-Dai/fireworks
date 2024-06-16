@@ -60,6 +60,7 @@ export default class fireworks {
     });
 
     this.points = new THREE.Points(this.geometry, this.material);
+
     this.points.position.x = -12;
     this.points.position.z = -25;
     this.points.position.y = 2;
@@ -158,13 +159,5 @@ export default class fireworks {
       this.pointsBoom.clear()
       this.scene.remove(this.pointsBoom);
     }
-
-
-
-
-
   }
-
-
-
 } 
